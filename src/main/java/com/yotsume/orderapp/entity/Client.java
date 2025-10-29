@@ -39,9 +39,9 @@ public class Client {
     private Profile profile;
 
     @OneToMany(mappedBy = "client",
-    fetch = FetchType.LAZY,
-    cascade = CascadeType.ALL,
-    orphanRemoval = true)
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
     private List<Order> orders = new ArrayList<>();
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
