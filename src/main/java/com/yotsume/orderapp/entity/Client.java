@@ -15,6 +15,12 @@ import java.util.Set;
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString(onlyExplicitlyIncluded = true)
+@NamedEntityGraph(
+        name = "clients_with_coupons",
+        attributeNodes = {
+                @NamedAttributeNode("coupons")
+        }
+)
 public class Client {
 
     @Id

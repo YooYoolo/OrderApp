@@ -3,9 +3,11 @@ package com.yotsume.orderapp.service;
 import com.yotsume.orderapp.dto.request.*;
 import com.yotsume.orderapp.dto.response.ClientDto;
 import com.yotsume.orderapp.dto.response.OrderDto;
+import com.yotsume.orderapp.entity.Client;
 import jakarta.transaction.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface CustomerService {
     // 1. Добавление клиента (с профилем, заказами, купонами)
@@ -27,4 +29,6 @@ public interface CustomerService {
     List<OrderDto> searchOrders(OrderSearchCriteria criteria);
 
     ClientDto getClientWithOrdersAndProfile(Long clientId);
+
+    List<Client> findAllWithCoupons();
 }

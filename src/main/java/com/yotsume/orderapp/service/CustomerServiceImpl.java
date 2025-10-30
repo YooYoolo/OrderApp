@@ -11,7 +11,10 @@ import com.yotsume.orderapp.repository.ClientRepository;
 import com.yotsume.orderapp.repository.CouponRepository;
 import com.yotsume.orderapp.repository.OrderRepository;
 import com.yotsume.orderapp.repository.ProfileRepository;
+import jakarta.persistence.EntityGraph;
+import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.persistence.PersistenceContext;
 import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 import jakarta.validation.Valid;
@@ -32,6 +35,8 @@ public class CustomerServiceImpl implements CustomerService {
     private final OrderRepository orderRepository;
     private final CouponRepository couponRepository;
     private final ProfileRepository profileRepository;
+    @PersistenceContext
+    private EntityManager entityManager;
 
 
     @Override
@@ -163,5 +168,11 @@ public class CustomerServiceImpl implements CustomerService {
                 .orElseThrow(() -> new EntityNotFoundException("Client not found with id: " + clientId));
 
         return new ClientDto(client.getId(), client.getName(), client.getEmail(), client.getRegistrationDate());
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Client> findAllWithCoupons(){
+        return clientRepository.findAllWithCoupons();
     }
 }
