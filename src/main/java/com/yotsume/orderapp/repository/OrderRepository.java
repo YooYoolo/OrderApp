@@ -5,6 +5,7 @@ import com.yotsume.orderapp.entity.enums.OrderStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
@@ -13,6 +14,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 
     @Query("""
             select o from Order o
+            left join fetch o.client
             where (:status is null or o.status = :status)
             and (:minAmount is null or o.totalAmount >= :minAmount)
             and (:maxAmount is null or o.totalAmount <= :maxAmount)

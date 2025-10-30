@@ -57,7 +57,6 @@ public class Client {
         this.email = email;
     }
 
-    // Утилитарные методы для управления связями (важно!)
     public void addOrder(Order order) {
         orders.add(order);
         order.setClient(this);

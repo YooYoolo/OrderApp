@@ -3,6 +3,7 @@ package com.yotsume.orderapp.dto.request;
 import jakarta.validation.constraints.*;
 
 import java.util.List;
+import java.util.Set;
 
 public record ClientCreationDto(
         @NotNull
@@ -24,6 +25,6 @@ public record ClientCreationDto(
 
         List<InitialOrderDto> initialOrders,
 
-        List<Long> couponIds
+        Set<Long> couponIds
 ) {
 }
